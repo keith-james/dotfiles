@@ -252,7 +252,7 @@ ex ()
 
 # reporting tools - install when not installed
 # install neofetch
-neofetch
+# neofetch
 # install screenfetch
 #screenfetch
 # install ufetch-git
