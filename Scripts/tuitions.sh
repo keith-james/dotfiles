@@ -19,5 +19,5 @@ elif [ "$choice" = "${CLASSES[2]}" ]; then
     firefox https://us04web.zoom.us/j/5078550966?pwd=RXZ4S1lVeFU3cVl4M011cHVyVUJZdz09
 
 else
-    echo wrong
+    echo "Wrong Choice :("
 fi
