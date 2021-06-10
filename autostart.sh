@@ -1,9 +1,8 @@
 #!/usr/bin/env bash 
 
-lxsession &
+nitrogen --restore &
 picom --experimental-backends --backend glx --vsync &
 xmodmap ~/.Xmodmap &
-nitrogen --restore &
 /usr/bin/emacs --daemon &
 volumeicon &
 xfce4-power-manager &

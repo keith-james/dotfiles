@@ -267,3 +267,5 @@ ex ()
 #hfetch
 # install lolcat
 #sfetch | lolcat
+
+eval "$(starship init bash)"

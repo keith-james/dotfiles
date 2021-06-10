@@ -8,7 +8,7 @@ CLASSES=("Math Tuition" "Chemistry Tuition" "Physics Tuition")
 choice=$(printf '%s\n' "${CLASSES[@]}" | sort | dmenu -i -p 'Choose class:' "$@")
 
 if [ "$choice" = "${CLASSES[0]}" ]; then
-    firefox https://zoom.us/j/8426360502
+    firefox https://zoom.us/j/8426360502 &
     echo test
     echo -n kTT9nH | xclip -sel clip
 
