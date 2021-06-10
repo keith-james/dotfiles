@@ -44,10 +44,6 @@ keys = [
              lazy.shutdown(),
              desc='Shutdown Qtile'
              ),
-         Key(["control", "shift"], "e",
-             lazy.spawn("emacsclient -c -a emacs"),
-             desc='Doom Emacs'
-             ),
          ### Switch focus to specific monitor (out of three)
          #Key([mod], "w",
          #    lazy.to_screen(0),
@@ -141,8 +137,8 @@ keys = [
          Key([], "XF86AudioMute", lazy.spawn("amixer -q set Master toggle")),
          Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -c 0 sset Master 1- unmute")),
          Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -c 0 sset Master 1+ unmute")),
-         # Emacs programs launched using the key chord CTRL+e followed by 'key'
-         KeyChord(["control"],"e", [
+         # Emacs programs launched using the key chord CTRL+Shift+e followed by 'key'
+         KeyChord(["control", "shift"],"e", [
              Key([], "e",
                  lazy.spawn("emacsclient -c -a 'emacs'"),
                  desc='Launch Emacs'
@@ -178,9 +174,9 @@ keys = [
          ]),
          # Dmenu scripts launched using the key chord SUPER+p followed by 'key'
          KeyChord([mod], "p", [
-             Key([], "e",
-                 lazy.spawn("./dmscripts/dmconf"),
-                 desc='Choose a config file to edit'
+             Key([], "t",
+                 lazy.spawn("./Scripts/Tuition.sh"),
+                 desc='Tuition Classes'
                  ),
              Key([], "i",
                  lazy.spawn("./dmscripts/dmscrot"),

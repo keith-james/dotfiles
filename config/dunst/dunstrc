@@ -16,14 +16,14 @@ markup = full
 format = %s\n%b
 alignment = left
 show_age_threshold = 60
-word_wrap = no
+word_wrap = yes
 ignore_newline = no
 stack_duplicates = false
 hide_duplicate_count = no
 show_indicators = no
 icon_position = left
 icon_path = /usr/share/icons/Papirus/
-max_icon_size = 100
+max_icon_size = 50
 sticky_history = yes
 history_length = 20
 browser = /usr/bin/firefox -new-tab
@@ -39,7 +39,7 @@ history = ctrl+grave
 context = ctrl+shift+period
 
 [urgency_low]
-timeout = 4
+timeout = 1
 foreground = "#7f3ea3"
 background = "#282c34"
 #frame_color = "#8bc34a"
