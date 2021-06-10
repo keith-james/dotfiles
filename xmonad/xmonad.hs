@@ -187,7 +187,7 @@ myKeys =
     -- File explorer
     ("M-e", spawn "pcmanfm"),
     -- Terminal
-    ("M-<Return>", spawn myTerminal),
+    ("M-<Return>", spawn "alacritty"),
     -- Redshift
     ("M-r", spawn "redshift -O 2400"),
     ("M-S-r", spawn "redshift -x"),
