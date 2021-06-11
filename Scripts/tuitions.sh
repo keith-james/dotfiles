@@ -13,10 +13,10 @@ if [ "$choice" = "${CLASSES[0]}" ]; then
     echo -n kTT9nH | xclip -sel clip
 
 elif [ "$choice" = "${CLASSES[1]}" ]; then
-    firefox https://us04web.zoom.us/j/77678318563?pwd=bWNzUFU4V2JSU3IvTUdjUXdreGtaUT09
+    firefox https://us04web.zoom.us/j/77678318563?pwd=bWNzUFU4V2JSU3IvTUdjUXdreGtaUT09 &
 
 elif [ "$choice" = "${CLASSES[2]}" ]; then
-    firefox https://us04web.zoom.us/j/5078550966?pwd=RXZ4S1lVeFU3cVl4M011cHVyVUJZdz09
+    firefox https://us04web.zoom.us/j/5078550966?pwd=RXZ4S1lVeFU3cVl4M011cHVyVUJZdz09 9
 
 else
     echo "Wrong Choice :("
