@@ -77,7 +77,7 @@ mySpacing' i = spacingRaw True (Border i i i i) True (Border i i i i) True
 
 tall = renamed [Replace "tall"]
     $ limitWindows 12
-    $ mySpacing 2
+    $ mySpacing 4
     $ ResizableTall 1 (3 / 100) (1 / 2) []
 
 monocle = renamed [Replace "monocle"] $ limitWindows 20 Full
@@ -179,7 +179,7 @@ myKeys =
     -------------------- App configs --------------------
 
     -- Menu
-    ("M-S-<Return>", spawn "rofi -show drun"),
+    ("M-S-<Return>", spawn "dmenu_run -h 20"),
     -- Window nav
     ("M-S-m", spawn "rofi -show"),
     -- Browser
@@ -261,5 +261,5 @@ main = do
             -- Number of windows in current workspace
             ppExtras = [windowCount],
             ppOrder = \(ws : l : t : ex) -> [ws, l] ++ ex ++ [t]
-        } >> updatePointer (0.5, 0.5) (0.5, 0.5) 
+        }
 } `additionalKeysP` myKeys
