@@ -42,6 +42,7 @@ import qualified XMonad.StackSet as W
 import XMonad.Util.EZConfig (additionalKeysP)
 import XMonad.Util.Run (spawnPipe)
 import XMonad.Util.SpawnOnce
+import XMonad.Util.NamedScratchpad
 
 myModMask = mod4Mask :: KeyMask
 
@@ -124,6 +125,37 @@ myWorkspaces = clickable . (map xmobarEscape)
   where
     clickable l = ["<action=xdotool key super+" ++ show (i) ++ "> " ++ ws ++ "</action>" | (i, ws) <- zip [1 .. 9] l]
 
+myScratchPads :: [NamedScratchpad]
+myScratchPads = [ NS "terminal" spawnTerm findTerm manageTerm
+                , NS "mocp" spawnMocp findMocp manageMocp
+                , NS "calculator" spawnCalc findCalc manageCalc
+                ]
+    where
+    spawnTerm  = myTerminal ++ " -t scratchpad"
+    findTerm   = title =? "scratchpad"
+    manageTerm = customFloating $ W.RationalRect l t w h
+                 where
+                 h = 0.9
+                 w = 0.9
+                 t = 0.95 -h
+                 l = 0.95 -w
+    spawnMocp  = myTerminal ++ " -t mocp -e mocp"
+    findMocp   = title =? "mocp"
+    manageMocp = customFloating $ W.RationalRect l t w h
+                 where
+                 h = 0.9
+                 w = 0.9
+                 t = 0.95 -h
+                 l = 0.95 -w
+    spawnCalc  = "qalculate-gtk"
+    findCalc   = className =? "Qalculate-gtk"
+    manageCalc = customFloating $ W.RationalRect l t w h
+                 where
+                 h = 0.5
+                 w = 0.4
+                 t = 0.75 -h
+                 l = 0.70 -w
+
 myKeys :: [(String, X ())]
 myKeys = 
     [
@@ -143,6 +175,13 @@ myKeys =
     ("M-C-r", spawn "xmonad --restart"),
     -- Quit xmonad
     ("M-C-q", io exitSuccess),
+
+
+    ----------------- ScratchPads ----------------------
+    ("C-S-t", namedScratchpadAction myScratchPads "terminal"),
+    ("C-S-m", namedScratchpadAction myScratchPads "mocp"),
+
+
 
     ----------------- Floating windows -----------------
 
@@ -181,7 +220,7 @@ myKeys =
     -- Menu
     ("M-S-<Return>", spawn "dmenu_run -h 20"),
     -- Window nav
-    ("M-S-m", spawn "rofi -show"),
+    ("M-S-p", spawn "rofi -show drun"),
     -- Browser
     ("M-b", spawn "firefox"),
     -- File explorer
@@ -242,7 +281,7 @@ main = do
         normalBorderColor = myNormColor,
         focusedBorderColor = myFocusColor,
         -- Log hook
-        logHook = workspaceHistoryHook <+> dynamicLogWithPP xmobarPP {
+        logHook = workspaceHistoryHook <+> dynamicLogWithPP xmobarPP  {
             ppOutput = \x -> hPutStrLn xmobarLaptop x,
             -- Current workspace in xmobar
             ppCurrent = xmobarColor "#c3e88d" "" . wrap "[" " ]",
@@ -263,3 +302,5 @@ main = do
             ppOrder = \(ws : l : t : ex) -> [ws, l] ++ ex ++ [t]
         }
 } `additionalKeysP` myKeys
+
+ 

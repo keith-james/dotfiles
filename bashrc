@@ -8,14 +8,13 @@
 #export GTK_IM_MODULE=ibus
 #export XMODIFIERS=@im=dbus
 #export QT_IM_MODULE=ibus
-
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
 export HISTCONTROL=ignoreboth:erasedups
 
 # Make nano the default editor
-
+cat ~/.config/wpg/sequences
 export EDITOR='vim'
 export VISUAL='nano'
 
