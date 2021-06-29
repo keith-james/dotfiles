@@ -99,13 +99,9 @@ Key([mod, "shift"], "Return", lazy.spawn("rofi -show drun -theme ~/.cache/wal/co
     Key([], "XF86AudioLowerVolume", lazy.spawn("amixer sset 'Master' 5%-")),
     Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer sset 'Master' 5%+")),
     # Media keys
-    Key([], "XF86AudioPlay", lazy.spawn("playerctl play-pause")),
-    Key([], "XF86AudioNext", lazy.spawn("playerctl next")),
-    Key([], "XF86AudioPrev", lazy.spawn("playerctl previous")),
-    # screenshot keys
+    Key([], "XF86AudioPlay", lazy.spawn("playerctl play-pause")), Key([], "XF86AudioNext", lazy.spawn("playerctl next")), Key([], "XF86AudioPrev", lazy.spawn("playerctl previous")), # screenshot keys
     Key([mod, "control"], "3", lazy.function(screenshot(copy=False))),
     Key([mod, "control"], "4", lazy.function(screenshot(save=False))),
-    # copyq keys
     # Key([mod], "c", lazy.spawn(copyq())),
     # Execute Scripts from .Scripts directory
     KeyChord([mod], "p", [
@@ -113,18 +109,20 @@ Key([mod, "shift"], "Return", lazy.spawn("rofi -show drun -theme ~/.cache/wal/co
     ])
 ]
 
-colors = []
-cache = "/home/keith/.cache/wal/colors"
+colors = [
+    "#282a36",
+    "#44475a",
+    "#f8f8f2",
+    "#6272a4",
+    "#8be9fd",
+    "#50fa7b",
+    "#ffb86c",
+    "#ff79c6",
+    "#bd93f9",
+    "#ff5555",
+    "#f1fa8c"
+    ]
 
-
-def load_colors(cache):
-    with open(cache, "r") as file:
-        for _ in range(15):
-            colors.append(file.readline().strip())
-    lazy.reload()
-
-
-load_colors(cache)
 
 group_names = [("SYS", {'layout': 'monadtall'}),
                ("WWW", {'layout': 'monadtall'}),
@@ -176,10 +174,10 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font="SourceCodePro",
+    font="Source Code Pro",
     fontsize=12,
     padding=3,
-    foreground=colors[7],
+    foreground=colors[8],
 )
 extension_defaults = widget_defaults.copy()
 
@@ -190,37 +188,34 @@ screens = [
                 widget.GroupBox(
                     font = 'Source Code Pro',
                     urgent_alert_method='text',
-                    urgent_border=colors[9],
-                    urgent_text=colors[9],
-                    inactive=colors[10],
-                    active=colors[14],
-                    block_highlight_text_color=colors[10],
-                    foreground=colors[14],
+                    urgent_border=colors[1],
+                    urgent_text=colors[1],
+                    inactive=colors[3],
+                    active=colors[6],
+                    block_highlight_text_color=colors[6],
+                    foreground=colors[2],
                     hide_unused=False,
                     highlight_method='block',
-                    this_current_screen_border=colors[14],
-                    this_screen_border=colors[14],
-                    highlight_color=[colors[14], colors[12]]
+                    this_current_screen_border=colors[1],
+                    this_screen_border=colors[6],
+                    highlight_color=colors[1],
                 ),
                 widget.Prompt(),
                 widget.WindowName(
-                    max_chars = 50
+                    max_chars = 50,
                     ),
                 widget.Chord(
                     chords_colors={
-                        "launch": (colors[11], colors[0]),
+                        "launch": (colors[9], colors[0]),
                     },
-                    name_transform=lambda name: name.upper()
+                    name_transform=lambda name: name.upper(),
                 ),
                 widget.Moc(
                     padding = 20,
-                    play_color = colors[7],
-                    noplay_color = colors[10]
+                    play_color = colors[6],
+                    noplay_color = colors[4],
                 ),
-                widget.Systray(
-                    padding = 5,
-                    font = "Source Code Pro"
-                ),
+                widget.Systray(),
                 widget.Battery(
                     battery = 0,
                     padding = 15,
@@ -228,8 +223,8 @@ screens = [
                     discharge_char = '' ,
                     format = '{char} {percent:2.0%}'
                 ),
-                widget.Clock( format="%Y-%m-%d %a %I:%M %p", padding = 10),
-
+                widget.Clock(format="%Y-%m-%d %a %I:%M %p",
+                             padding=10,),
             ],
             26,
             margin=[4, 5, 0, 5],  # N E S W

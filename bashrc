@@ -14,7 +14,6 @@
 export HISTCONTROL=ignoreboth:erasedups
 
 # Make nano the default editor
-cat ~/.config/wpg/sequences
 export EDITOR='vim'
 export VISUAL='nano'
 
