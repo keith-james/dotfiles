@@ -1,9 +1,9 @@
-background_opacity: 0.9
+background_opacity: 1
 
 draw_bold_text_with_bright_colors: true
 colors:
   primary:
-    background: '0x282a36'
+    background: '0x1E2029'
     foreground: '0xf8f8f2'
   cursor:
     text: CellBackground
@@ -138,6 +138,6 @@ window:
     instance: Alacritty
   dynamic_padding: true
   padding:
-    x: 0
-    y: 0
+    x: 5
+    y: 5
   title: Alacritty

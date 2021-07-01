@@ -100,8 +100,8 @@ Key([mod, "shift"], "Return", lazy.spawn("rofi -show drun -theme ~/.cache/wal/co
     Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer sset 'Master' 5%+")),
     # Media keys
     Key([], "XF86AudioPlay", lazy.spawn("playerctl play-pause")), Key([], "XF86AudioNext", lazy.spawn("playerctl next")), Key([], "XF86AudioPrev", lazy.spawn("playerctl previous")), # screenshot keys
-    Key([mod, "control"], "3", lazy.function(screenshot(copy=False))),
-    Key([mod, "control"], "4", lazy.function(screenshot(save=False))),
+    Key([], 'F3', lazy.function(screenshot(copy=False))),
+    Key([], 'F4', lazy.function(screenshot(save=False))),
     # Key([mod], "c", lazy.spawn(copyq())),
     # Execute Scripts from .Scripts directory
     KeyChord([mod], "p", [
@@ -110,7 +110,7 @@ Key([mod, "shift"], "Return", lazy.spawn("rofi -show drun -theme ~/.cache/wal/co
 ]
 
 colors = [
-    "#282a36",
+    "#1E2029",
     "#44475a",
     "#f8f8f2",
     "#6272a4",
@@ -125,10 +125,11 @@ colors = [
 
 
 group_names = [("SYS", {'layout': 'monadtall'}),
-               ("WWW", {'layout': 'monadtall'}),
-               ("DEV", {'layout': 'monadtall'}),
-               ("SCH", {'layout': 'monadtall'}),
-               ("MUS", {'layout': 'monadtall'}),
+               ("WWW", {'layout': 'monadtall', 'matches': [Match(wm_class=["firefox", "qutebrowser"])]}),
+               ("DEV", {'layout': 'monadtall', 'matches': [Match(wm_class=["Emacs"])]}),
+               ("SCH", {'layout': 'monadtall', 'matches': [Match(wm_class=["Microsoft Teams - Preview", "zoom"])]}),
+               ("MUS", {'layout': 'monadtall', 'matches': [Match(wm_class=["Spotify", "Pavucontrol"])]}),
+               ("CHAT", {'layout': 'monadtall', 'matches': [Match(wm_class=["Whatsapp-for-linux"])]}),
                ("MISC", {'layout': 'monadtall'})]
 
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
@@ -148,8 +149,8 @@ keys.extend([
 
 for i, (name, kwargs) in enumerate(group_names, 1):
     keys.append(Key([mod], str(i), lazy.group[name].toscreen()))        # Switch to another group
-    keys.append(Key([mod, "shift"], str(i), lazy.window.togroup(name))) # Send current window to another group
 
+    keys.append(Key([mod, "shift"], str(i), lazy.window.togroup(name, switch_group=True))) # Send current window to another group
 layout_theme = {
     "border_width": 1,
     "margin": 5,
@@ -213,7 +214,7 @@ screens = [
                 widget.Moc(
                     padding = 20,
                     play_color = colors[6],
-                    noplay_color = colors[4],
+                    noplay_color = colors[3],
                 ),
                 widget.Systray(),
                 widget.Battery(
