@@ -14,6 +14,9 @@ super + @space
 super + Escape
 	pkill -USR1 -x sxhkd
 
+super + x
+	i3lock
+
 #
 # bspwm hotkeys
 #
@@ -24,7 +27,7 @@ super + alt + {q,r}
 
 # close and kill
 super + {_,shift + }c
-	bspc node -{c,k}
+	bspc node -{k,c}
 
 # alternate between the tiled and monocle layout
 super + m
@@ -80,8 +83,8 @@ super + {o,i}
 # focus or send to the given desktop
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}'
-super + shift + Return
-	rofi -show drun
+super + shift + {Return, r, p, s}
+	sh $HOME/.config/rofi/bin/{launcher,runner,powermenu,screenshot}
 
 #
 # preselect
