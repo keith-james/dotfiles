@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Toggle Dunst pause state
+
+# Check the new state
+if dunstctl is-paused | grep -q "true"; then
+  notify-send "DND mode off"
+  dunstctl set-paused toggle
+else
+  notify-send "DND mode on"
+  sleep 1.5
+  dunstctl set-paused toggle
+fi
